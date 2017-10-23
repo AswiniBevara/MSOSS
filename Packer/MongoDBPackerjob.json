@@ -6,8 +6,9 @@
     "storage_account": "",
     "subscription_id": "",
     "tenant_id": "",
-    "artifacts_location": "",
-    "azure_region": ""
+    "azure_region": "",
+    "artifacts_location": ""
+    
   },
   "builders": [{
     "type": "azure-arm",
@@ -18,8 +19,9 @@
     "storage_account": "{{user `storage_account`}}",
     "subscription_id": "{{user `subscription_id`}}",
     "tenant_id": "{{user `tenant_id`}}",
-    "artifacts_location": "{{user `artifacts_location`}}",
     "azure_region": "{{user `azure_region`}}",
+    "artifacts_location": "{{user `artifacts_location`}}",
+    
 
     "capture_container_name": "mongodbimages",
     "capture_name_prefix": "MongoDB",
