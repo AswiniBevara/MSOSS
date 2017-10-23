@@ -7,8 +7,8 @@
     "subscription_id": "",
     "tenant_id": "",
     "Hartfile" : "",
-    "_artifactsLocation":"",
-    "azureRegion":""
+    "artifactsLocation": "",
+    "azureRegion": ""
   },
   "builders": [{
     "type": "azure-arm",
@@ -18,7 +18,7 @@
     "storage_account": "{{user `storage_account`}}",
     "subscription_id": "{{user `subscription_id`}}",
     "tenant_id": "{{user `tenant_id`}}",
-    "_artifactsLocation": "{{user `_artifactsLocation`}}",
+    "artifactsLocation": "{{user `artifactsLocation`}}",
     
     "capture_container_name": "appimages",
     "capture_name_prefix": "App",
@@ -61,7 +61,7 @@
       "echo tar -xvf \"{{user `Hartfile`}}\" >> /scripts/downloadhart.sh",
       "echo DIR=`echo \"{{user `Hartfile`}}\" | sed 's/.tar.gz//g'` >> /scripts/downloadhart.sh",
       "echo cp -vrf '$DIR'\/*.pub /hab/cache/keys >> /scripts/downloadhart.sh",
-      "sudo wget -O /scripts/run_national-parks.sh \"{{user `_artifactsLocation`}}\"/scripts/run_national-parks.sh",
+      "sudo wget -O /scripts/run_national-parks.sh \"{{user `artifactsLocation`}}\"/scripts/run_national-parks.sh",
       "echo \"#!/bin/sh\" >> /scripts/filebeat.sh",
       "echo \"sudo mkdir -p /etc/pki/tls/certs\" >> /scripts/filebeat.sh",
       "echo \"cd /etc/filebeat\" >> /scripts/filebeat.sh",
