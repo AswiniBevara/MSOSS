@@ -58,3 +58,7 @@ variable "password" {
 description = "virtual machine admin password"
 default = ""
 }
+variable "_artifactsLocation" {
+description = "artifacts url"
+default = ""
+}
