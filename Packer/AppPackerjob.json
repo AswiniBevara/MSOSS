@@ -7,8 +7,8 @@
     "subscription_id": "",
     "tenant_id": "",
     "Hartfile" : "",
-    "artifacts_location": "",
-    "azure_region": ""
+    "azure_region": "",
+    "artifacts_location": ""
   },
   "builders": [{
     "type": "azure-arm",
