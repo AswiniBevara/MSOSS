@@ -44,7 +44,7 @@
   - [Uploading MongoDB HART file to Azure Container Registry:](#Uploading-MongoDB-HART-file-to-Azure-Container-Registry)
   - [Uploading National parks HART File to the Azure Container Registry:](#Uploading-National-parks-HART-File-to-the-Azure-Container-Registry)
   - [Verify Docker Images in Azure Container Registry](#Verify-Docker-Images-in-Azure-Container-Registry)
-  - [Run VMSS Job](#Run-VMSS-Job)
+- [Run VMSS Job](#Run-VMSS-Job)
   - [Verify Kubernetes Pods and Services](#Verify-Kubernetes-Pods-and-Services)
   - [Access National Park Applications](#Access-National-Park-Applications)
   - [Verifying Application Logs](#Verifying-Application-Logs)
