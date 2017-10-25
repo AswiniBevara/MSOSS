@@ -28,9 +28,6 @@
         },
         "kubernetesClusterName": {
             "value": "GEN-UNIQUE"
-        },
-        "_artifactsLocation": {
-            "value": "https://raw.githubusercontent.com/sysgain/MSOSS/kubstage"
         }
     }
 }

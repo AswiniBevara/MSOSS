@@ -11,10 +11,7 @@
         "networkSettings": {
             "type": "object"
         },
-        "packerStorageAccountName": {
-            "type": "string"
-        },
-        "baseUrl": {
+        "_artifactsLocation": {
             "type": "string"
         },
         "resourceGroupName": {
@@ -35,8 +32,7 @@
     },
     "variables": {
         "sasToken": "",
-        "vnetId": "[resourceId('Microsoft.Network/virtualNetworks', parameters('networkSettings').virtualNetworkName)]",
-        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('networkSettings').subnet1Name)]",
+        "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('networkSettings').virtualNetworkName,parameters('networkSettings').subnet1Name)]",
         "sshKeyPath": "[concat('/home/',parameters('jenkinsSettings').adminUsername,'/.ssh/authorized_keys')]",
         "osProfilesshPublicKey": {
             "computerName": "[parameters('jenkinsSettings').jenkinsVmName]",
@@ -173,7 +169,7 @@
                     ]
                 },
                 "protectedSettings": {
-                    "commandToExecute": "[concat('./' , parameters('jenkinsSettings').installJenkinsScriptName, ' -jf \"', reference(parameters('jenkinsSettings').jenkinsPipName).dnsSettings.fqdn, '\" -pi \"', parameters('jenkinsSettings').jenkinsVmPrivateIP, '\" -jrt \"', parameters('jenkinsSettings').jenkinsReleaseType , '\" -al \"', parameters('jenkinsSettings').baseUrl, '\" -st \"', variables('sasToken'), '\"' )]"
+                    "commandToExecute": "[concat('./' , parameters('jenkinsSettings').installJenkinsScriptName, ' -jf \"', reference(parameters('jenkinsSettings').jenkinsPipName).dnsSettings.fqdn, '\" -pi \"', parameters('jenkinsSettings').jenkinsVmPrivateIP, '\" -jrt \"', parameters('jenkinsSettings').jenkinsReleaseType , '\" -al \"', parameters('jenkinsSettings')._artifactsLocation, '\" -st \"', variables('sasToken'), '\"' )]"
                 }
             }
         },
@@ -189,7 +185,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('baseUrl'),'/nested/jenkins-jobs.json')]",
+                    "uri": "[concat(parameters('_artifactsLocation'),'/nested/jenkins-jobs.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -216,9 +212,6 @@
                     },
                     "AzureTenantId": {
                         "value": "[parameters('AzureTenantId')]"
-                    },
-                    "packerStorageAccountName": {
-                        "value": "[parameters('packerStorageAccountName')]"
                     }
                 }
             }
