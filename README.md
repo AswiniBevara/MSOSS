@@ -412,16 +412,16 @@ After the template has been successfully deployed, log in to the Jenkins server 
 
 
   ### Executing the Jobs
-**ELKJob**
+### ELKJob
 
 In ELKJob, we have configured terraform to deploy ELK stack on Azure. This will bring up one node, configured with Elasticsearch, Logstash and Kibana.
 
        
-**KubernetesClusterjob**
+### KubernetesClusterjob
 
 In Kubernetes Cluster job, it configures to deploy Kubernetes cluster on Azure, this will bring up one master and three nodes. This job also deploys Azure Container registry.
 
-**VMSSjob**
+### VMSSjob
 
 This job will launch a Virtual Machine Scale set with three application nodes.
 
