@@ -156,7 +156,7 @@
             "baseUrl": "[variables('baseUrl')]",
             "installJenkinsScriptUrl": "[concat(variables('baseUrl'),'/scripts/install_jenkins.sh')]",
             "installJenkinsjobsScriptUrl": "[concat(variables('baseUrl'),'/scripts/jenkins_deploy.sh')]",
-            "elkfqdn":"[concat('elk',variables('suffix')]"
+            "elkfqdn":"[concat('elk',variables('suffix'))]"
         },
         "buildInstanceSettings": {
             "location": "[variables('location')]",
