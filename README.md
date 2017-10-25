@@ -16,6 +16,7 @@ This solution will deploy the following architecture:
 1. Azure Load Balancer
 2. Azure Storage Account
 3. GitHub- The Terraform code is taken from GitHub and has been configured as a job in Jenkins.
+
 ![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/1.png)
 
 ## Terraform:
@@ -48,7 +49,7 @@ Elasticsearch is an open-source, broadly-distributable, readily-scalable, enterp
 
 - **Real-time data and real-time analytics:** The ELK stack gives you the power of real-time data insights, with the ability to perform super-fast data extractions from virtually all structured or unstructured data sources. With real-time extraction and real-time analytics, Elasticsearch is the engine that gives you both power and speed.
 - **Scalable, high-availability, multi-tenant:**   It is built to scale horizontally out of the box. As you need more capacity, simply add another node and let the cluster reorganize itself to accommodate and exploit the extra hardware. Elasticsearch clusters are resilient since they automatically detect and remove node failures. You can set up multiple indices and query each of them independently or in combination.
-- **Full text search: ** Elasticsearch uses Lucene to provide the most powerful full-text search capabilities available in any open-source product. The search features come with multi-language support, an extensive query language, geolocation support, context-sensitive suggestions, and autocompletion.
+- **Full text search:** Elasticsearch uses Lucene to provide the most powerful full-text search capabilities available in any open-source product. The search features come with multi-language support, an extensive query language, geolocation support, context-sensitive suggestions, and autocompletion.
 - **Document orientation:**  You can store complex, real-world entities in Elasticsearch as structured JSON documents. All fields have a default index, and you can use all the indices in a single query to get precise results in the blink of an eye.
 
 
@@ -59,7 +60,7 @@ Elasticsearch is an open-source, broadly-distributable, readily-scalable, enterp
 
   ### Kibana — Visualizing Your Log Data
 
-**Kibana ** is your log-data dashboard. Get a better grip on your large data stores with point-and-click pie charts, bar graphs, trendlines, maps, and scatter plots. You can visualize trends and patterns for data that would otherwise be extremely tedious to read and interpret. Eventually, each business line can make practical use of your data collection as you help them customize their dashboards. Save it, share it, and link your data visualizations for quick and smart communication.
+**Kibana** is your log-data dashboard. Get a better grip on your large data stores with point-and-click pie charts, bar graphs, trendlines, maps, and scatter plots. You can visualize trends and patterns for data that would otherwise be extremely tedious to read and interpret. Eventually, each business line can make practical use of your data collection as you help them customize their dashboards. Save it, share it, and link your data visualizations for quick and smart communication.
 
   ### Beats —  Lightweight Data Shippers
 
@@ -89,8 +90,7 @@ The concept of plugins makes Jenkins attractive, easy to learn, and easy to use.
 In this solution, we are using the Kubernetes Continuous Deploy plugins.
 
 
-  
-    **Kubernetes Continuous Deploy plugin:**
+**Kubernetes Continuous Deploy plugin:**
 
 This plugin allows for a Jenkins plugin to deploy resource configurations to a Kubernetes cluster.
 It supports three options as:
@@ -228,7 +228,7 @@ _info:    Executing command account show_
 
 _data:    Name                        : Sysgain-Backup_
 
-_data_ **:    ID** _                             :_ **086ef973-**** YOUR-GUID-HERE ****-c3d05c01a287**
+_data_ **:    ID** _                             :_ **086ef973-** **YOUR-GUID-HERE** **-c3d05c01a287**
 
 _data:    State                          : Enabled_
 
@@ -370,7 +370,7 @@ After the template has been successfully deployed, log in to the Jenkins server 
 In ELKJob, we have configured terraform to deploy ELK stack on Azure. This will bring up one node, configured with Elasticsearch, Logstash and Kibana.
 
        
-       **KubernetesClusterjob**
+**KubernetesClusterjob**
 
 In Kubernetes Cluster job, it configures to deploy Kubernetes cluster on Azure, this will bring up one master and three nodes. This job also deploys Azure Container registry.
 
@@ -413,6 +413,8 @@ This job will launch a Virtual Machine Scale set with three application nodes.
 
 ![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/32.png)
 
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/33.png)
+
 ## Chef Habitat:
 
 
@@ -423,7 +425,7 @@ To build the National Park application, begin by logging in to the Build Instanc
 1. Switch to the root user using **sudo -i**
 2. Chef Habitat can be configured using the command _&quot;_ **hab setup** _&quot;._
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/33.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/34.png)
 
 3. Enter &quot; **yes**&quot; for setting up the default origin
 4. Enter origin name as &quot; **root&quot;**
@@ -431,7 +433,7 @@ To build the National Park application, begin by logging in to the Build Instanc
 6. Enter &quot; **no**&quot; to setup the github access token
 7. Enter &quot; **yes**&quot; to Enable analytics
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/34.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/35.png)
 
 
   ### Creating Hart File:
@@ -440,13 +442,13 @@ To build the National Park application, begin by logging in to the Build Instanc
 
 **git clone** [https://github.com/sysgain/MSOSS.git](https://github.com/sysgain/MSOSS.git)
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/35.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/36.png)
 
 **cd MSOSS**
 
 **git checkout habcode**
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/36.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/37.png)
 
 2. Navigate to the location of the Directory where package plan.sh file is located.
 
@@ -454,30 +456,30 @@ To build the National Park application, begin by logging in to the Build Instanc
 
 3. Enter &quot; **hab studio enter** _&quot;_
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/37.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/38.png)
 
 4. Build the Application, using the &quot; **Build**&quot; Command.
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/38.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/39.png)
 
 5. Then exit the hab studio, by entering the **exit** command.
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/39.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/40.png)
 
 6. Once **build** is successful, a **HART** file will be generated in results Directory.
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/40.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/41.png)
 
 
 ### Get Azure Container Registry Password from Azure portal
 
 **1.**  Login to Azure Portal   [https://portal.azure.com/](https://portal.azure.com/) .On the home page on left side menu click on more services and search for container registries
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/41.png)
-
-**2.** Click on **Available azure container registries**** resource **and click on** Access Keys**
-
 ![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/42.png)
+
+**2.** Click on **Available azure container registries** **resource ** and click on ** Access Keys**
+
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/43.png)
 
 **3.** Be handy with username, password 1 and password 2 for furtherdeployments
 
@@ -493,7 +495,7 @@ Execute mongodb\_acrimage.sh command using below command
 
 **NOTE:** password 1 value is copied from previous step. Password 1 value should be one of the password 1 and password 2 but not both.
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/43.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/44.png)
 
   ### Uploading National parks HART File to the Azure Container Registry:
 
@@ -507,37 +509,37 @@ sh np\_acrimage.sh &lt;username&gt; &lt;password1&gt;
 
 **NOTE:** password 1 value is copied from previous step. Password 1 value should be one of the password 1 and password 2 but not both.
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/44.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/45.png)
 
 ##  Verify Docker Images in Azure Container Registry:
 
 **1.** Login to Azure Portal   [https://portal.azure.com/](https://portal.azure.com/) .On the home page on left side menu click on more services and search for container registries
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/45.png)
-
-**2.** Click on **Available azure container registries**** resource **and click on** Repositories**
-
 ![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/46.png)
+
+**2.** Click on **Available azure container registries** **resource **and click on ** Repositories**
+
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/47.png)
 
   ## Run VMSS Job:
 
 1. Move to the Jenkins Dashboard and click on VMSS Job.
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/47.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/48.png)
 
 2. Click on **Build Now**. Then, to view the Console output, click on **Build number** (Eg: **#1** ) as shown below.
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/48.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/49.png)
 
 3. Click on **Console Output.**
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/49.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/50.png)
 
 4. The console output log will be shown as below. If the build is successful, the output will reflect as &quot;Success&quot;.
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/50.png)
-
 ![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/51.png)
+
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/52.png)
 
 
 
@@ -546,7 +548,7 @@ sh np\_acrimage.sh &lt;username&gt; &lt;password1&gt;
 **1.** Get the DNS of Jenkins server and Kubernetes master Instances from Azure portal
 **2.** Login to Jenkins using private key and execute below command to connect to Kubernetes master instance.
 
-**ssh -i /var/lib/jenkins/.ssh/id\_rsa adminuser@&lt;**** Kubernetes master Instance dns name ****&gt;**
+**ssh -i /var/lib/jenkins/.ssh/id\_rsa adminuser@&lt;** **Kubernetes master Instance dns name** **&gt;**
 
 **3.** Change to the root user by using the below command:
 
@@ -556,14 +558,14 @@ sh np\_acrimage.sh &lt;username&gt; &lt;password1&gt;
 
 **Kubectl get pods**
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/52.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/53.png)
 
 
-**5.**Verify kubernetes service using below command
+**5.** Verify kubernetes service using below command
 
 **Kubectl get svc**
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/53.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/54.png)
 
 ## Access National Park Applications
 
@@ -571,7 +573,7 @@ sh np\_acrimage.sh &lt;username&gt; &lt;password1&gt;
 
 http://&lt;external-ip&gt;:8080/national-parks
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/54.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/55.png)
 
 ## Verifying Application Logs:
 
@@ -579,10 +581,10 @@ http://&lt;external-ip&gt;:8080/national-parks
 
   **Kubectl get pods**
 
-  ![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/55.png)
+  ![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/56.png)
 
 2. Get Logs of each pod by using below command. Replace podname with exact pod name one at a time.
 
 **Kubectl logs &lt;podname&gt;**
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/56.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/57.png)
