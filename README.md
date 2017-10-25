@@ -35,7 +35,7 @@
 	- [Jobs](#jobs)
 	- [Executing the Jobs](#executing-the-jobs)
 	- [ELKJob](#elkjob)
-	- [KubernetesClusterjob](#KubernetesClusterjob)
+	- [KubernetesClusterjob](#kubernetesclusterjob)
 	- [VMSSjob](#vmssjob)
 - [Chef Habitat:](#chef-habitat)
  	- [Configuring Habitat:](#configuring-habitat)
