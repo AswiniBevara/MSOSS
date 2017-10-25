@@ -14,14 +14,6 @@ variable "tenant_id" {
 description = "existing subscription tenant_id "  
 default = ""
 }
-variable "vnetName"{
-description = "Exisiting virtual network name"
-default = "MyVNET"
-}
-variable "subnetName" {
-description = "Exisiting subnet name"
-default = "ELK"
-}
 variable "ResourceGroup" {
 description = "name of the resource group which we created the vnet"
 default = ""
@@ -29,18 +21,22 @@ default = ""
 variable "Location"{
  description = "where the vnet is create"
  default = ""
- }
+}
+variable "vnetName"{
+description = "Exisiting virtual network name"
+default = "MyVNET"
+}
 variable "DynamicIP"{
 description =  "public_ip_address_allocation dynamic type"
 default = "dynamic"
 }
+variable "subnetName" {
+description = "Exisiting subnet name"
+default = "ELK"
+}
 variable "storageAccType"{
 description = "storage account type"
 default = "Standard_LRS"
-}
-variable "storage_account"{
-description = "storage account name"
-default = ""
 }
 variable "vmSize" {
 description = "virtual machine size"
@@ -48,6 +44,10 @@ default = "Standard_DS1_v2"
 }
 variable "vmName" {
 description = "virtual machine name"
+default = ""
+}
+variable "storage_account"{
+description = "storage account name"
 default = ""
 }
 variable "userName" {
