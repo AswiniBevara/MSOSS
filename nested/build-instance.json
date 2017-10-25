@@ -16,9 +16,6 @@
         },
         "AzureTenantId": {
             "type": "string"
-        },
-        "packerStorageAccName":{
-            "type": "string"
         }
     },
     "variables": {
@@ -199,7 +196,7 @@
                     ]
                 },
                 "protectedSettings": {
-                    "commandToExecute": "[concat('sh build.sh',' ',parameters('AzureApplicationId'),' ',parameters('AzureClientSecret'),' ',parameters('AzureTenantId'),' ',parameters('packerStorageAccName'))]"
+                    "commandToExecute": "[concat('sh build.sh',' ',parameters('AzureApplicationId'),' ',parameters('AzureClientSecret'),' ',parameters('AzureTenantId'))]"
                 }
             }
         }
