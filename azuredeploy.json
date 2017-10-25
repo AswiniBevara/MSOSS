@@ -5,19 +5,19 @@
         "adminUsername": {
             "type": "string",
             "metadata": {
-                "description": "User name for the Virtual Machines."
+                "description": "user name for the virtual machines."
             }
         },
         "azureUsername": {
             "type": "string",
             "metadata": {
-                "description": "Azure login name"
+                "description": "azure login name"
             }
         },
         "azurePassword": {
             "type": "securestring",
             "metadata": {
-                "description": "Azure login Password"
+                "description": "azure login password"
             }
         },
         "authenticationType": {
@@ -355,6 +355,9 @@
                     },
                     "_artifactsLocation": {
                         "value": "[parameters('_artifactsLocation')]"
+                    },
+                    "_artifactsLocationSasToken":{
+                        "value": "[parameters('_artifactsLocationSasToken')]"
                     }
                 }
             }
