@@ -347,7 +347,6 @@ The ARM template will deploy the following resources on Azure:
 | 3    |ELK Stack             | Elasticsearch, Kibana, Filebeat  | 1                    |Elasticsearch:Contains Index data, Kibana:Segregate logs to visualize as graphs, Filebeat:Forwarding logs to Kibana| 80
 | 4    |Load Balancer         | -                                | 1                    |Directs traffic to Application Nodes                                                                                  |
 | 5    |Azure Storage Account | packer,jenkins,ELK               | 3                    |Packer:To store the Packer VHD’s |
-
 | 6    |Kubernetes | -             | 1 master, 3 agents                    |To Deploy applications in pods |
 | 7    |Azure Container Registry | -             | 1                  |To store Docker images |
 
