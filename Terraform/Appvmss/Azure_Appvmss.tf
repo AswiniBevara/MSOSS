@@ -15,7 +15,7 @@ resource "azurerm_public_ip" "vmsspublicip" {
   public_ip_address_allocation = "${var.DynamicIP}"
   domain_name_label            = "app${random_id.app.hex}"
   tags {
-    environment = "staging"
+    environment = "quickstart"
   }
 }
 resource "azurerm_lb" "applb" {
@@ -51,8 +51,8 @@ resource "azurerm_lb_rule" "rule1" {
   frontend_ip_configuration_name = "ipconfig"
   enable_floating_ip             = false
   backend_address_pool_id        = "${azurerm_lb_backend_address_pool.backendpool.id}"
-  idle_timeout_in_minutes        = 5
-  probe_id                       = "${azurerm_lb_probe.Appport.id}"
+ idle_timeout_in_minutes        = 5
+ probe_id                       = "${azurerm_lb_probe.Appport.id}"
   depends_on                     = ["azurerm_lb_probe.Appport","azurerm_lb_backend_address_pool.backendpool"]
 }
 resource "azurerm_lb_nat_pool" "lbNat" {
