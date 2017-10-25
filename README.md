@@ -48,7 +48,8 @@
 - [Verify Kubernetes Pods and Services](#verify-kubernetes-pods-and-services)
 - [Access National Park Applications](#access-national-park-applications)
 - [Verifying Application Logs](#verifying-application-logs)
-  
+
+
 ## Solution Architecture:
 
 This solution will deploy the following architecture:
@@ -122,7 +123,10 @@ Elasticsearch is an open-source, broadly-distributable, readily-scalable, enterp
 
 
   ### The following logs are visualized in Kibana:
-
+| S.NO | Nodes            | Logs Path|
+| ---- |-------------     | -------- |
+| 1    | Application Node | /hab/svc/national-parks/logs/, /hab/pkgs/core/tomcat8/8.5.9/20170514144202/tc/logs/, /root/sup-national-parks.log|
+| 2    | mongoDB          | /hab/svc/mongodb/logs, /hab/svc/mongodb/var/mongod.log, /root/sup.mongodb.log|
 
 
 ## Jenkins:
@@ -336,9 +340,16 @@ _info:    account show command OK_
 The ARM template will deploy the following resources on Azure:
 
 
+| S.NO | Nodes                | Installed application            | No of nodes          |Node Purpose                                                                                                       | Ports
+| ---- |-------------         | --------------------             | ------------         |-------------                                                                                                      | -----
+| 1    |Jenkins server        | Jekins                           | 1                    |Install and configure plugins and jobs                                                                             | 8080   
+| 2    |Build Instance        | Chef Habitat                     | 1                    |Creating habitat packages  
+| 3    |ELK Stack             | Elasticsearch, Kibana, Filebeat  | 1                    |Elasticsearch:Contains Index data, Kibana:Segregate logs to visualize as graphs, Filebeat:Forwarding logs to Kibana| 80
+| 4    |Load Balancer         | -                                | 1                    |Directs traffic to Application Nodes                                                                                  |
+| 5    |Azure Storage Account | packer,jenkins,ELK               | 3                    |Packer:To store the Packer VHD’s |
 
-
-
+| 6    |Kubernetes | -             | 1 master, 3 agents                    |To Deploy applications in pods |
+| 7    |Azure Container Registry | -             | 1                  |To store Docker images |
 
 
 ## Solution Workflow:
@@ -412,16 +423,16 @@ After the template has been successfully deployed, log in to the Jenkins server 
 
 
   ### Executing the Jobs
-### ELKJob
+**ELKJob**
 
 In ELKJob, we have configured terraform to deploy ELK stack on Azure. This will bring up one node, configured with Elasticsearch, Logstash and Kibana.
 
        
-### KubernetesClusterjob
+**KubernetesClusterjob**
 
 In Kubernetes Cluster job, it configures to deploy Kubernetes cluster on Azure, this will bring up one master and three nodes. This job also deploys Azure Container registry.
 
-### VMSSjob
+**VMSSjob**
 
 This job will launch a Virtual Machine Scale set with three application nodes.
 
