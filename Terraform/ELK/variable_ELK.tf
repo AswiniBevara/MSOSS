@@ -63,11 +63,10 @@ description = "artifacts url"
 default = ""
 }
 variable "kibanaUsername" {
-    default = ""
-    description = "kibana Username"
+description = "kibana Username"
+default = ""
 }
-
 variable "kibanaPassword" {
-    default = ""
-    description = "kibana password"
+description = "kibana password"
+default = ""
 }
