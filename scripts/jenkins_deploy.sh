@@ -9,7 +9,7 @@ jenkinsdir="/var/lib/jenkins"
 user="admin"
 passwd=`cat /var/lib/jenkins/secrets/initialAdminPassword`
 url="localhost:8080"
-echo "$2,$3,$4,${15}" >> $srcdir/mongodbvhdurl.secrets
+
 
 # Configure Repos for Azure Cli 2.0
 echo "---Configure Repos for Azure Cli 2.0---" >> $LOG
@@ -26,10 +26,10 @@ sudo apt-get -y install apt-transport-https azure-cli html-xml-utils xmlstarlet 
 
 #Download the Required Jenkins Files
 echo "---Download the Required Jenkins Files---" >> $LOG
-wget -P $srcdir ${27}/scripts/elk-config.xml >> $LOG
-wget -P $srcdir ${27}/scripts/VMSSjob.xml >> $LOG
-wget -P $srcdir ${27}/scripts/kubernetes.xml >> $LOG
-wget -P $srcdir ${27}/scripts/credentialsconfig.xml >> $LOG
+wget -P $srcdir ${26}/scripts/elk-config.xml >> $LOG
+wget -P $srcdir ${26}/scripts/VMSSjob.xml >> $LOG
+wget -P $srcdir ${26}/scripts/kubernetes.xml >> $LOG
+wget -P $srcdir ${26}/scripts/credentialsconfig.xml >> $LOG
 
 #Configuring Jenkins
 echo "---Configuring Jenkins---"
@@ -50,7 +50,7 @@ echo "jenkins.model.Jenkins.instance.securityRealm.createAccount("\'"jenkinsadmi
 
 if [ ! -f "credentialsconfig.xml" ]
 then
-    xmlstarlet ed -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl[id="LoginCredentials"]/username' -v "${23}" -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl[id="LoginCredentials"]/password' -v "${24}" -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl[id="subscriptiondetails"]/password' -v "$1" -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey[id="sshkeyid"]/privateKeySource/privateKey' -v "${25}" $srcdir/credentialsconfig.xml | sed "s/&amp;quot;/\"/g" > $jenkinsdir/credentials.xml
+    xmlstarlet ed -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl[id="LoginCredentials"]/username' -v "${22}" -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl[id="LoginCredentials"]/password' -v "${23}" -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl[id="subscriptiondetails"]/password' -v "$1" -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey[id="sshkeyid"]/privateKeySource/privateKey' -v "${24}" $srcdir/credentialsconfig.xml | sed "s/&amp;quot;/\"/g" > $jenkinsdir/credentials.xml
 fi
 
 if [ ! -f "elk-config.xml" ]
@@ -69,18 +69,20 @@ vmSize = &quot;${11}&quot;
 vmName = &quot;${12}&quot;
 userName = &quot;${13}&quot;
 password = &quot;${14}&quot;
-_artifactsLocation = &quot;${27}&quot;" $srcdir/elk-config.xml | sed "s/&amp;quot;/\"/g" > $srcdir/elk-newconfig.xml
+_artifactsLocation = &quot;${26}&quot;
+kibanaUsername = &quot;${27}&quot;
+kibanaPassword = &quot;${28}&quot;" $srcdir/elk-config.xml | sed "s/&amp;quot;/\"/g" > $srcdir/elk-newconfig.xml
 fi
 
 if [ ! -f "VMSSjob.xml" ]
 then
     xmlstarlet ed -u '//builders/hudson.tasks.Shell/command' -v "cd /var/lib/jenkins/workspace/VMSSJob/Kubernetes
 cp np-mongo-controller.yaml /var/lib/jenkins/np-mongo-controllernew
-cat /var/lib/jenkins/np-mongo-controllernew | sed &quot;s:ossacr.azurecr.io/mongodb:${26}.azurecr.io/mongodb:g&quot; > np-mongo-controller.yaml
+cat /var/lib/jenkins/np-mongo-controllernew | sed &quot;s:ossacr.azurecr.io/mongodb:${25}.azurecr.io/mongodb:g&quot; > np-mongo-controller.yaml
 cp np-web-controller.yaml /var/lib/jenkins/np-web-controllernew
-cat /var/lib/jenkins/np-web-controllernew | sed &quot;s:ossacr.azurecr.io/national-parks:${26}.azurecr.io/national-parks:g&quot; > np-web-controller.yaml
+cat /var/lib/jenkins/np-web-controllernew | sed &quot;s:ossacr.azurecr.io/national-parks:${25}.azurecr.io/national-parks:g&quot; > np-web-controller.yaml
 rm /var/lib/jenkins/np-mongo-controllernew
-rm /var/lib/jenkins/np-web-controllernew" -u '//builders/com.microsoft.jenkins.kubernetes.KubernetesDeploy/context/ssh/sshServer' -v "${17}mgmt.westus.cloudapp.azure.com" -u '//builders/com.microsoft.jenkins.kubernetes.KubernetesDeploy/context/dockerCredentials/org.jenkinsci.plugins.docker.commons.credentials.DockerRegistryEndpoint/url' -v "http://${26}.azurecr.io" $srcdir/VMSSjob.xml | sed "s/&amp;quot;/\"/g" > $srcdir/VMSSjob.xml-newconfig.xml
+rm /var/lib/jenkins/np-web-controllernew" -u '//builders/com.microsoft.jenkins.kubernetes.KubernetesDeploy/context/ssh/sshServer' -v "${16}mgmt.westus.cloudapp.azure.com" -u '//builders/com.microsoft.jenkins.kubernetes.KubernetesDeploy/context/dockerCredentials/org.jenkinsci.plugins.docker.commons.credentials.DockerRegistryEndpoint/url' -v "http://${25}.azurecr.io" $srcdir/VMSSjob.xml | sed "s/&amp;quot;/\"/g" > $srcdir/VMSSjob.xml-newconfig.xml
 fi
 
 if [ ! -f "kubernetes.xml" ]
@@ -91,11 +93,11 @@ then
     sshKey="\$SSH_KEY"
     xmlstarlet ed -u '//builders/hudson.tasks.Shell/command' -v "az login -u $usrname -p $paswd
 az account set --subscription $subID
-az acs create --orchestrator-type kubernetes --name ${18} --resource-group $5 --admin-username ${13} --agent-count ${19} --agent-vm-size ${22} --dns-prefix ${17} --master-count ${21} --master-vm-size ${22} --generate-ssh-keys
-az acr create --resource-group $5 --name ${26} --sku Basic --admin-enabled true" $srcdir/kubernetes.xml | sed "s/&amp;quot;/\"/g" > $srcdir/kubernetes-newconfig.xml
+az acs create --orchestrator-type kubernetes --name ${17} --resource-group $5 --admin-username ${13} --agent-count ${18} --agent-vm-size ${21} --dns-prefix ${16} --master-count ${20} --master-vm-size ${21} --generate-ssh-keys
+az acr create --resource-group $5 --name ${25} --sku Basic --admin-enabled true" $srcdir/kubernetes.xml | sed "s/&amp;quot;/\"/g" > $srcdir/kubernetes-newconfig.xml
 fi
 
-wget -P $jenkinsdir ${27}/scripts/org.jenkinsci.plugins.terraform.TerraformBuildWrapper.xml
+wget -P $jenkinsdir ${26}/scripts/org.jenkinsci.plugins.terraform.TerraformBuildWrapper.xml
 sleep 30 && java -jar $srcdir/jenkins-cli.jar -s  http://$url restart --username $user --password $passwd && sleep 30
 curl -X POST "http://$user:$api@$url/createItem?name=ELKJob" --data-binary "@$srcdir/elk-newconfig.xml" -H "$CRUMB" -H "Content-Type: text/xml"
 curl -X POST "http://$user:$api@$url/createItem?name=VMSSJob" --data-binary "@$srcdir/VMSSjob.xml-newconfig.xml" -H "$CRUMB" -H "Content-Type: text/xml"

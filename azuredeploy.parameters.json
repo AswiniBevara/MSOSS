@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "adminUsername": {
-            "value": "adminuser"
+            "value": "GEN-UNIQUE"
         },
         "azureUsername": {
-            "value": "azureuser"
+            "value": "GEN-UNIQUE"
         },
         "azurePassword": {
             "value": "GEN-PASSWORD"
@@ -14,26 +14,20 @@
         "sshPublicKey": {
             "value": "GEN-SSH-PUB-KEY"
         },
-        "jenkinsVmSize": {
-            "value": "Standard_DS2_v2"
+        "kibanaWebUIUsername":{
+            "value": "GEN-UNIQUE"
         },
-        "buildInstanceVmSize": {
-            "value": "Standard_DS1_v2"
+        "kibanaWebUIPassword":{
+            "value": "GEN-PASSWORD"
         },
         "azureApplicationId": {
-            "value": "GEN-UNIQUE"
+            "value": "GEN-GUID"
         },
         "azureClientSecret": {
             "value": "GEN-UNIQUE"
         },
         "kubernetesClusterName": {
-            "value": "ku"
-        },
-        "agentCount": {
-            "value": "3"
-        },
-        "masterCount": {
-            "value": "1"
+            "value": "GEN-UNIQUE"
         },
         "_artifactsLocation": {
             "value": "https://raw.githubusercontent.com/sysgain/MSOSS/kubstage"
