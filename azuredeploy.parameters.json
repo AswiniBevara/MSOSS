@@ -11,9 +11,6 @@
         "azurePassword": {
             "value": "GEN-PASSWORD"
         },
-        "authenticationType": {
-            "value": "sshPublicKey"
-        },
         "sshPublicKey": {
             "value": "GEN-SSH-PUB-KEY"
         },
@@ -35,14 +32,8 @@
         "agentCount": {
             "value": "3"
         },
-        "agentVmSize": {
-            "value": "Standard_DS1_v2"
-        },
         "masterCount": {
             "value": "1"
-        },
-        "masterVmSize": {
-            "value": "Standard_DS1_v2"
         },
         "_artifactsLocation": {
             "value": "https://raw.githubusercontent.com/sysgain/MSOSS/kubstage"
