@@ -62,3 +62,12 @@ variable "_artifactsLocation" {
 description = "artifacts url"
 default = ""
 }
+variable "kibanaUsername" {
+    default = ""
+    description = "kibana Username"
+}
+
+variable "kibanaPassword" {
+    default = ""
+    description = "kibana password"
+}
