@@ -71,7 +71,8 @@ userName = &quot;${13}&quot;
 password = &quot;${14}&quot;
 _artifactsLocation = &quot;${26}&quot;
 kibanaUsername = &quot;${27}&quot;
-kibanaPassword = &quot;${28}&quot;" $srcdir/elk-config.xml | sed "s/&amp;quot;/\"/g" > $srcdir/elk-newconfig.xml
+kibanaPassword = &quot;${28}&quot;
+_artifactsLocationSasToken = &quot;${29}&quot;" $srcdir/elk-config.xml | sed "s/&amp;quot;/\"/g" > $srcdir/elk-newconfig.xml
 fi
 
 if [ ! -f "VMSSjob.xml" ]
