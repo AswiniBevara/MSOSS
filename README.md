@@ -477,11 +477,11 @@ To build the National Park application, begin by logging in to the Build Instanc
 
 ![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/42.png)
 
-**2.** Click on **Available azure container registries** **resource ** and click on ** Access Keys**
+**2.** Click on **Available azure container registries** **resource** and click on  **Access Keys**
 
 ![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/43.png)
 
-**3.** Be handy with username, password 1 and password 2 for furtherdeployments
+**3.** Be handy with username, password 1 and password 2 for further deployments
 
 ### Uploading MongoDB HART file to Azure Container Registry:
 
@@ -517,7 +517,7 @@ sh np\_acrimage.sh &lt;username&gt; &lt;password1&gt;
 
 ![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/46.png)
 
-**2.** Click on **Available azure container registries** **resource **and click on ** Repositories**
+**2.** Click on **Available azure container registries** **resource** and click on **Repositories**
 
 ![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/47.png)
 
