@@ -581,9 +581,8 @@ sh np\_acrimage.sh &lt;username&gt; &lt;password1&gt;
 ## Change the Azure container registry Username and Password
 
 1. Move to the Jenkins Dashboard and Click on **Credentials** from left side menu.
-Click on **ossAcr/******(acrReglogin)**
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/47(5).png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/47-5.png)
 
 2. Click on **ossAcr/******(acrReglogin)**
 
@@ -604,7 +603,7 @@ Click on **ossAcr/******(acrReglogin)**
 
 1. Move to the Jenkins Dashboard and click on VMSS Job.
 
-![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/47.5.png)
+![alt text](https://github.com/sysgain/MSOSS/raw/kubstage/images/47-5.png)
 
 2. Click on **Build Now**. Then, to view the Console output, click on **Build number** (Eg: **#1** ) as shown below.
 
