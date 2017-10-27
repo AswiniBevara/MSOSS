@@ -639,3 +639,27 @@ http://&lt;external-ip&gt;:8080/national-parks
 **Kubectl logs &lt;podname&gt;**
 
 ![alt text](https://github.com/sysgain/azure-quickstart-templates/raw/msoss-p2/devopstools-jenkins-chefhabitat-kubernetes/images/61.png)
+
+## Visualizing logs in Kibana Dashboard
+
+1. Use the **FQDN** of **ELKJob** output from the Jenkins to log into **Kibana DashBoard** and credentials from output section of ARM template from Azure portal.
+
+![alt text](https://github.com/sysgain/azure-quickstart-templates/raw/msoss-p2/devopstools-jenkins-chefhabitat-kubernetes/images/69.PNG)
+
+2. After log into Kibana Dashboard, Click on **&quot;filebeat&quot;** from left side menu and Click on star icon.
+
+![alt text](https://github.com/sysgain/azure-quickstart-templates/raw/msoss-p2/devopstools-jenkins-chefhabitat-kubernetes/images/70.PNG)
+
+![alt text](https://github.com/sysgain/azure-quickstart-templates/raw/msoss-p2/devopstools-jenkins-chefhabitat-kubernetes/images/71.PNG)
+
+3. Click on **&quot;Discover&quot;** from top menu to view the vmss and mongoDB logs.
+
+![alt text](https://github.com/sysgain/azure-quickstart-templates/raw/msoss-p2/devopstools-jenkins-chefhabitat-kubernetes/images/72.PNG)
+
+![alt text](https://github.com/sysgain/azure-quickstart-templates/raw/msoss-p2/devopstools-jenkins-chefhabitat-kubernetes/images/73.PNG)
+
+4. By default last 15 min logs will be displayed, you can change it as per log search and also you can set auto refresh time as shown below.
+
+![alt text](https://github.com/sysgain/azure-quickstart-templates/raw/msoss-p2/devopstools-jenkins-chefhabitat-kubernetes/images/74.PNG)
+
+![alt text](https://github.com/sysgain/azure-quickstart-templates/raw/msoss-p2/devopstools-jenkins-chefhabitat-kubernetes/images/75.PNG)
