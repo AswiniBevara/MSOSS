@@ -42,6 +42,7 @@ echo $CRUMB
 curl -X POST -d '<jenkins><install plugin="packer@current" /></jenkins>' --header 'Content-Type: text/xml' -H "$CRUMB" http://$user:$api@$url/pluginManager/installNecessaryPlugins
 curl -X POST -d '<jenkins><install plugin="terraform@current" /></jenkins>' --header 'Content-Type: text/xml' -H "$CRUMB" http://$user:$api@$url/pluginManager/installNecessaryPlugins
 curl -X POST -d '<jenkins><install plugin="kubernetes-cd@current" /></jenkins>' --header 'Content-Type: text/xml' -H "$CRUMB" http://$user:$api@$url/pluginManager/installNecessaryPlugins
+curl -X POST -d '<jenkins><install plugin="publish-over-ssh@current" /></jenkins>' --header 'Content-Type: text/xml' -H "$CRUMB" http://$user:$api@$url/pluginManager/installNecessaryPlugins
 #systemctl restart jenkins && sleep 30
 sleep 30 && java -jar $srcdir/jenkins-cli.jar -s  http://$url restart --username $user --password $passwd
 #creating jenkins user
@@ -80,7 +81,8 @@ cat /var/lib/jenkins/np-mongo-controllernew | sed &quot;s:ossacr.azurecr.io/mong
 cp np-web-controller.yaml /var/lib/jenkins/np-web-controllernew
 cat /var/lib/jenkins/np-web-controllernew | sed &quot;s:ossacr.azurecr.io/national-parks:${26}.azurecr.io/national-parks:g&quot; > np-web-controller.yaml
 rm /var/lib/jenkins/np-mongo-controllernew
-rm /var/lib/jenkins/np-web-controllernew" -u '//builders/com.microsoft.jenkins.kubernetes.KubernetesDeploy/context/ssh/sshServer' -v "${17}mgmt.westus.cloudapp.azure.com" -u '//builders/com.microsoft.jenkins.kubernetes.KubernetesDeploy/context/dockerCredentials/org.jenkinsci.plugins.docker.commons.credentials.DockerRegistryEndpoint/url' -v "http://${26}.azurecr.io" $srcdir/VMSSjob.xml | sed "s/&amp;quot;/\"/g" > $srcdir/VMSSjob.xml-newconfig.xml
+rm /var/lib/jenkins/np-web-controllernew" -u '//builders/com.microsoft.jenkins.kubernetes.KubernetesDeploy/context/ssh/sshServer' -v "${17}mgmt.westus.cloudapp.azure.com" -u '//builders/com.microsoft.jenkins.kubernetes.KubernetesDeploy/context/dockerCredentials/org.jenkinsci.plugins.docker.commons.credentials.DockerRegistryEndpoint/url' -v "http://${26}.azurecr.io" '//builders/jenkins.plugins.publish__over__ssh.BapSshBuilderPlugin/delegate/delegate/publishers/jenkins.plugins.publish__over__ssh.BapSshPublisher/transfers/jenkins.plugins.publish__over__ssh.BapSshTransfer/execCommand' -v "sudo wget https://raw.githubusercontent.com/sysgain/MSOSS/kubstage/scripts/kubepodlogs.sh
+sh kubepodlogs.sh " $srcdir/VMSSjob.xml | sed "s/&amp;quot;/\"/g" > $srcdir/VMSSjob.xml-newconfig.xml
 fi
 
 if [ ! -f "kubernetes.xml" ]
@@ -92,10 +94,26 @@ then
     xmlstarlet ed -u '//builders/hudson.tasks.Shell/command' -v "az login -u $usrname -p $paswd
 az account set --subscription $subID
 az acs create --orchestrator-type kubernetes --name ${18} --resource-group $5 --admin-username ${13} --agent-count ${19} --agent-vm-size ${22} --dns-prefix ${17} --master-count ${21} --master-vm-size ${22} --generate-ssh-keys
-az acr create --resource-group $5 --name ${26} --sku Basic --admin-enabled true" $srcdir/kubernetes.xml | sed "s/&amp;quot;/\"/g" > $srcdir/kubernetes-newconfig.xml
+az acr create --resource-group $5 --name ${26} --sku Basic --admin-enabled true" '//builders/jenkins.plugins.publish__over__ssh.BapSshBuilderPlugin/delegate/delegate/publishers/jenkins.plugins.publish__over__ssh.BapSshPublisher/transfers/jenkins.plugins.publish__over__ssh.BapSshTransfer/execCommand' -v" echo "deb https://packages.elastic.co/beats/apt stable main" | sudo tee -a /etc/apt/sources.list.d/beats.list
+wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install filebeat
+cd /etc/filebeat
+ls
+sudo rm -rf filebeat.yml
+sudo wget https://raw.githubusercontent.com/sysgain/MSOSS/kubstage/scripts/filebeat.sh
+sh filebeat.sh elk${27}.$6.cloudapp.azure.com
+sleep 10" $srcdir/kubernetes.xml | sed "s/&amp;quot;/\"/g" > $srcdir/kubernetes-newconfig.xml
 fi
 
 wget -P $jenkinsdir https://raw.githubusercontent.com/sysgain/MSOSS/kubstage/scripts/org.jenkinsci.plugins.terraform.TerraformBuildWrapper.xml
+wget -P $srcdir https://raw.githubusercontent.com/sysgain/MSOSS/kubstage/scripts/jenkins.plugins.publish_over_ssh.BapSshPublisherPluginConfig.xml >>$LOG
+
+if [ ! -f "jenkins.plugins.publish_over_ssh.BapSshPublisherPluginConfig.xml" ]
+then
+    xmlstarlet ed -u '//hostConfigurations/jenkins.plugins.publish__over__ssh.BapSshHostConfiguration/hostname' -v "${17}mgmt.$6.cloudapp.azure.com" -u '//hostConfigurations/jenkins.plugins.publish__over__ssh.BapSshHostConfiguration/username' -v "${13}" $srcdir/jenkins.plugins.publish_over_ssh.BapSshPublisherPluginConfig.xml > $jenkinsdir/jenkins.plugins.publish_over_ssh.BapSshPublisherPlugin.xml
+fi
+
 sleep 30 && java -jar $srcdir/jenkins-cli.jar -s  http://$url restart --username $user --password $passwd && sleep 30
 curl -X POST "http://$user:$api@$url/createItem?name=ELKJob" --data-binary "@$srcdir/elk-newconfig.xml" -H "$CRUMB" -H "Content-Type: text/xml"
 curl -X POST "http://$user:$api@$url/createItem?name=VMSSJob" --data-binary "@$srcdir/VMSSjob.xml-newconfig.xml" -H "$CRUMB" -H "Content-Type: text/xml"
