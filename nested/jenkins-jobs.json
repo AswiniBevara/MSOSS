@@ -5,8 +5,8 @@
         "jenkinsSettings": {
             "type": "secureObject"
         },
-        "kubernetesSettings":{
-            "type":"object"
+        "kubernetesSettings": {
+            "type": "object"
         },
         "networkSettings": {
             "type": "object"
@@ -32,7 +32,7 @@
     },
     "resources": [
         {
-            "comments": "This custom script extension is used to create jobs in jenkins.", 
+            "comments": "This custom script extension is used to create jobs in jenkins.",
             "name": "[concat(parameters('jenkinsSettings').jenkinsVmName, '/Init')]",
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "apiVersion": "2017-03-30",
