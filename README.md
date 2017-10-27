@@ -652,11 +652,9 @@ http://&lt;external-ip&gt;:8080/national-parks
 
 ![alt text](https://github.com/sysgain/azure-quickstart-templates/raw/msoss-p2/devopstools-jenkins-chefhabitat-kubernetes/images/71.PNG)
 
-3. Click on **&quot;Discover&quot;** from top menu to view the vmss and mongoDB logs.
+3. Click on **&quot;Discover&quot;** from top menu to view the logs.
 
 ![alt text](https://github.com/sysgain/azure-quickstart-templates/raw/msoss-p2/devopstools-jenkins-chefhabitat-kubernetes/images/72.PNG)
-
-![alt text](https://github.com/sysgain/azure-quickstart-templates/raw/msoss-p2/devopstools-jenkins-chefhabitat-kubernetes/images/73.PNG)
 
 4. By default last 15 min logs will be displayed, you can change it as per log search and also you can set auto refresh time as shown below.
 
