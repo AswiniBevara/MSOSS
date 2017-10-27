@@ -167,6 +167,7 @@
             "installJenkinsScriptName": "install_jenkins.sh",
             "jenkinsReleaseType": "LTS",
             "baseUrl": "[variables('baseUrl')]",
+            "suffix":"[variables('suffix')]",
             "installJenkinsScriptUrl": "[concat(variables('baseUrl'),'scripts/install_jenkins.sh')]",
             "installJenkinsjobsScriptUrl": "[concat(variables('baseUrl'),'scripts/jenkins_deploy.sh')]"
         },
