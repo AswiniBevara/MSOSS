@@ -73,8 +73,8 @@ password = &quot;${14}&quot;
 _artifactsLocation = &quot;${26}&quot;
 kibanaUsername = &quot;${27}&quot;
 kibanaPassword = &quot;${28}&quot;
-_artifactsLocationSasToken = &quot;${29}&quot;
-suffix = &quot;${30}&quot;" $srcdir/elk-config.xml | sed "s/&amp;quot;/\"/g" > $srcdir/elk-newconfig.xml
+suffix = &quot;${29}&quot;
+_artifactsLocationSasToken = &quot;${30}&quot;" $srcdir/elk-config.xml | sed "s/&amp;quot;/\"/g" > $srcdir/elk-newconfig.xml
 fi
 
 if [ ! -f "VMSSjob.xml" ]
@@ -106,7 +106,7 @@ cd /etc/filebeat
 ls
 sudo rm -rf filebeat.yml
 sudo wget ${26}/scripts/filebeat.sh
-sh filebeat.sh ${26} elk${30}.$6.cloudapp.azure.com
+sh filebeat.sh ${26} elk${29}.$6.cloudapp.azure.com
 sleep 10" $srcdir/kubernetes.xml | sed "s/&amp;quot;/\"/g" > $srcdir/kubernetes-newconfig.xml
 fi
 
