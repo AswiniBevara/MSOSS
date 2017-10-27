@@ -91,7 +91,7 @@ for podname in \`cat /home/adminuser/pods\`; do kubectl logs -f \$podname > /hom
 ls" $srcdir/VMSSjob.xml | sed "s/&amp;quot;/\"/g" > $srcdir/VMSSjob.xml-newconfig.xml
 fi
 
-if [ ! -f "kubernetes.xml" 
+if [ ! -f "kubernetes.xml" ]
 then
     usrname="\$AZ_USER"
     paswd="\$AZ_PASSWORD"
