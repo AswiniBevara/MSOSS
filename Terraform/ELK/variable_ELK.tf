@@ -54,3 +54,7 @@ variable "password" {
 description = "virtual machine admin password"
 default = ""
 }
+variable "suffix" {
+description = "virtual machine admin password"
+default = ""
+}
