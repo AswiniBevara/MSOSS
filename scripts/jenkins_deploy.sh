@@ -51,7 +51,7 @@ echo "jenkins.model.Jenkins.instance.securityRealm.createAccount("\'"jenkinsadmi
 
 if [ ! -f "credentialsconfig.xml" ]
 then
-    xmlstarlet ed -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl[id="LoginCredentials"]/username' -v "${22}" -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl[id="LoginCredentials"]/password' -v "${23}" -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl[id="subscriptiondetails"]/password' -v "$1" -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey[id="sshkeyid"]/privateKeySource/privateKey' -v "${24}" $srcdir/credentialsconfig.xml | sed "s/&amp;quot;/\"/g" > $jenkinsdir/credentials.xml
+    xmlstarlet ed -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl[id="LoginCredentials"]/username' -v "${22}" -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl[id="LoginCredentials"]/password' -v "${23}" -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl[id="subscriptiondetails"]/password' -v "$1" -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey[id="sshkeyid"]/privateKeySource/privateKey' -v "${24}" -u '//domainCredentialsMap/entry/java.util.concurrent.CopyOnWriteArrayList/com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey[id="adminuserID"]/username' -v "${13}" $srcdir/credentialsconfig.xml | sed "s/&amp;quot;/\"/g" > $jenkinsdir/credentials.xml
 fi
 
 if [ ! -f "elk-config.xml" ]
@@ -100,7 +100,8 @@ then
     xmlstarlet ed -u '//builders/hudson.tasks.Shell/command' -v "az login -u $usrname -p $paswd
 az account set --subscription $subID
 az acs create --orchestrator-type kubernetes --name ${17} --resource-group $5 --admin-username ${13} --agent-count ${18} --agent-vm-size ${21} --dns-prefix ${16} --master-count ${20} --master-vm-size ${21} --generate-ssh-keys
-az acr create --resource-group $5 --name ${25} --sku Basic --admin-enabled true" -u '//builders/jenkins.plugins.publish__over__ssh.BapSshBuilderPlugin/delegate/delegate/publishers/jenkins.plugins.publish__over__ssh.BapSshPublisher/transfers/jenkins.plugins.publish__over__ssh.BapSshTransfer/execCommand' -v "echo \"deb https://packages.elastic.co/beats/apt stable main\" | sudo tee -a /etc/apt/sources.list.d/beats.list
+az acr create --resource-group $5 --name ${25} --sku Basic --admin-enabled true
+sleep 40" -u '//builders/jenkins.plugins.publish__over__ssh.BapSshBuilderPlugin/delegate/delegate/publishers/jenkins.plugins.publish__over__ssh.BapSshPublisher/transfers/jenkins.plugins.publish__over__ssh.BapSshTransfer/execCommand' -v "echo \"deb https://packages.elastic.co/beats/apt stable main\" | sudo tee -a /etc/apt/sources.list.d/beats.list
 wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install filebeat
@@ -108,7 +109,7 @@ cd /etc/filebeat
 ls
 sudo rm -rf filebeat.yml
 sudo wget ${26}/scripts/filebeat.sh
-sh filebeat.sh ${26} elk${29}.$6.cloudapp.azure.com
+sh filebeat.sh ${26} elk${29}.$6.cloudapp.azure.com ${13}
 sleep 10" $srcdir/kubernetes.xml | sed "s/&amp;quot;/\"/g" > $srcdir/kubernetes-newconfig.xml
 fi
 
