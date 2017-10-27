@@ -86,8 +86,8 @@ cp np-web-controller.yaml /var/lib/jenkins/np-web-controllernew
 cat /var/lib/jenkins/np-web-controllernew | sed &quot;s:ossacr.azurecr.io/national-parks:${25}.azurecr.io/national-parks:g&quot; > np-web-controller.yaml
 rm /var/lib/jenkins/np-mongo-controllernew
 rm /var/lib/jenkins/np-web-controllernew" -u '//builders/com.microsoft.jenkins.kubernetes.KubernetesDeploy/context/ssh/sshServer' -v "${16}mgmt.$6.cloudapp.azure.com" -u '//builders/com.microsoft.jenkins.kubernetes.KubernetesDeploy/context/dockerCredentials/org.jenkinsci.plugins.docker.commons.credentials.DockerRegistryEndpoint/url' -v "http://${25}.azurecr.io" -u '//builders/jenkins.plugins.publish__over__ssh.BapSshBuilderPlugin/delegate/delegate/publishers/jenkins.plugins.publish__over__ssh.BapSshPublisher/transfers/jenkins.plugins.publish__over__ssh.BapSshTransfer/execCommand' -v "sleep 30
-kubectl get --no-headers=true pods -o name | awk -F "/" '{print \$2}' > /home/adminuser/pods
-for podname in \`cat /home/adminuser/pods\`; do kubectl logs -f \$podname > /home/adminuser/\$podname.log & done &
+kubectl get --no-headers=true pods -o name | awk -F "/" '{print \$2}' > /home/${13}/pods
+for podname in \`cat /home/${13}/pods\`; do kubectl logs -f \$podname > /home/${13}/\$podname.log & done &
 ls" $srcdir/VMSSjob.xml | sed "s/&amp;quot;/\"/g" > $srcdir/VMSSjob.xml-newconfig.xml
 fi
 
