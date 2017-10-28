@@ -599,7 +599,7 @@ sh np\_acrimage.sh &lt;username&gt; &lt;password1&gt;
 **1.** Get the DNS of Jenkins server and Kubernetes master Instances from Azure portal
 **2.** Login to Jenkins using private key and execute below command to connect to Kubernetes master instance.
 
-**ssh -i /var/lib/jenkins/.ssh/id\_rsa &lt;username&lt;@&lt;** **Kubernetes master Instance dns name** **&gt;**
+**ssh -i /var/lib/jenkins/.ssh/id\_rsa &lt;username&gt;@&lt;** **Kubernetes master Instance dns name** **&gt;**
 
 **3.** Change to the root user by using the below command:
 
