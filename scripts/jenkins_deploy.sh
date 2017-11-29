@@ -97,7 +97,7 @@ then
     paswd="\$AZ_PASSWORD"
     subID="\$AZ_SUBID"
     sshKey="\$SSH_KEY"
-    xmlstarlet ed -u '//builders/hudson.tasks.Shell/command' -v "az login -u $usrname -p $paswd
+    xmlstarlet ed -u '//builders/hudson.tasks.Shell/command' -v "az login --service-principal -u $2 --password $3 --tenant $4
 az account set --subscription $subID
 az acs create --orchestrator-type kubernetes --name ${17} --resource-group $5 --admin-username ${13} --agent-count ${18} --agent-vm-size ${21} --dns-prefix ${16} --master-count ${20} --master-vm-size ${21} --generate-ssh-keys
 az acr create --resource-group $5 --name ${25} --sku Basic --admin-enabled true
